@@ -1,0 +1,29 @@
+%{
+    #include "tokenTable.h"
+    #include "lex.yy.h"
+    void yyerror(const char*);
+%}
+%union{
+    char* strv;
+}
+
+%token <strv> KTYPEID KIF KELSE KWHILE 
+%token <strv> OPALGORLOW OPALGORHIGH OPATTACHVAL OPLOGALGOR OPOR OPAND OPSOP OPLB OPRB OPLBB OPRBB OPCOL
+%token <strv> NUMBER STRING NAME
+%type Program Statement
+
+%right OPATTACHVAL
+%left OPOR
+%left OPAND
+%left OPLOGALGOR
+%left OPALGORLOW
+%left OPALGORHIGH
+%left OPLB OPRB
+%%
+Program:|Statement;
+Statement:KTYPEID NAME OPATTACHVAL NUMBER OPCOL;
+%%
+void yyerror(const char *msg)
+{
+  fprintf(stderr, "%s at line %d\n", msg, yylineno);
+}

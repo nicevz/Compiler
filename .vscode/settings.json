@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "*.l": "lex",
+        "cstdlib": "cpp",
+        "iostream": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "iomanip": "cpp",
+        "*.tcc": "cpp",
+        "algorithm": "cpp",
+        "memory": "cpp",
+        "random": "cpp",
+        "fstream": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "numeric": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp"
+    }
+}
