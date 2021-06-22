@@ -1,6 +1,6 @@
 %{
   #include "main.h"
-  #include "BisonLALR.tab.hxx"
+  #include "BisonLALR.tab.hh"
 %}
 
 %option noyywrap graphs_file header_file bison flex

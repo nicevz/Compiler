@@ -1,4 +1,4 @@
-result:BisonLALR.yxx LexicalAnalyzer.l main.h color.hpp
-	bison -d BisonLALR.yxx
+result:BisonLALR.yy LexicalAnalyzer.l main.h color.hpp
+	bison -d BisonLALR.yy
 	reflex LexicalAnalyzer.l
-	g++ lex.yy.cpp main.cpp BisonLALR.tab.cxx ./libreflex.a -g
+	g++ lex.yy.cpp main.cpp BisonLALR.tab.cc ./libreflex.a -g

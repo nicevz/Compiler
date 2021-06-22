@@ -1,7 +1,7 @@
 #include <iomanip>
 #include "main.h"
 #include "lex.yy.h"
-#include "BisonLALR.tab.hxx"
+#include "BisonLALR.tab.hh"
 
 std::string _snodeType[] = {"Name", "Number", "String"};
 int myLineNo;
