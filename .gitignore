@@ -1,4 +1,4 @@
 .vscode
 a.out
 lex.yy.*
-*.tab.cpp
+*.tab.*
