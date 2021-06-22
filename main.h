@@ -1,7 +1,7 @@
 #ifndef GOUSHI
 #define GOUSHI
 #include <string>
-#include "color.h"
+#include "color.hpp"
 
 enum _nodeType
 {
