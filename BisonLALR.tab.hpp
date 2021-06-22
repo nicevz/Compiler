@@ -34,8 +34,8 @@
 /* Undocumented macros, especially those whose name start with YY_,
    are private implementation details.  Do not rely on them.  */
 
-#ifndef YY_YY_BIS_TAB_HPP_INCLUDED
-# define YY_YY_BIS_TAB_HPP_INCLUDED
+#ifndef YY_YY_BISONLALR_TAB_HPP_INCLUDED
+# define YY_YY_BISONLALR_TAB_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -76,11 +76,11 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 6 "bis.ypp" /* yacc.c:1921  */
+#line 7 "BisonLALR.ypp" /* yacc.c:1921  */
 
     char* strv;
 
-#line 84 "bis.tab.hpp" /* yacc.c:1921  */
+#line 84 "BisonLALR.tab.hpp" /* yacc.c:1921  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -93,4 +93,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_BIS_TAB_HPP_INCLUDED  */
+#endif /* !YY_YY_BISONLALR_TAB_HPP_INCLUDED  */
