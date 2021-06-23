@@ -1,8 +1,15 @@
 %{
-    #include "main.h"
     #include "lex.yy.h"
+    void yyerror(YYLTYPE*, yyscan_t, const char*);
+    /* Pass the parameter 'scanner' to yyparse through to yylex. */
+    #define YYPARSE_PARAM scanner
+    #define YYLEX_PARAM   scanner
 %}
 
+%locations
+%pure-parser
+%lex-param { void *scanner }
+%parse-param { void *scanner }
 
 %union{
     char* strv;
@@ -61,7 +68,8 @@ StatementList:
     |%empty
     ;
 Statement:
-    CodeBlock
+    Expressions OPSEMI
+    |CodeBlock
     |KIF OPLB Expressions OPRB Statement                %prec LOWER_THAN_ELSE
     |KIF OPLB Expressions OPRB Statement KELSE Statement
     |KWHILE OPLB Expressions OPRB Statement
@@ -120,3 +128,8 @@ Arguments:
     ;
 
 %%
+void yyerror(YYLTYPE *yylloc, yyscan_t scanner, const char *msg)
+{
+  (void)scanner; // appease -Wall -Werror
+  std::cerr << msg << " at " << yylloc->first_line << "," << yylloc->first_column << std::endl;
+}

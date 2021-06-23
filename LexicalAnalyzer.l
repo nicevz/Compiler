@@ -1,9 +1,9 @@
-%{
-  #include "main.h"
+%top{
   #include "BisonLALR.tab.hh"
-%}
+  #include "Node.h"
+}
 
-%option noyywrap graphs_file header_file bison flex
+%option bison-locations bison-bridge noyywrap header-file
 /* 处理关键字 */
 
 ktypei (int)

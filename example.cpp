@@ -8,7 +8,6 @@ int main()
     int i;
     int j = 123;
     string s = "aaaaaaaaaaaaa";
-    i = 456;
     int k;
     k = i + j;
     if (i == 456 && j == 123)
@@ -26,4 +25,5 @@ int main()
     {
         i++;
     }
+    main("dfklgjdfk;j");
 }
