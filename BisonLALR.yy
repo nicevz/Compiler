@@ -11,7 +11,7 @@
 %token <strv> KTYPENUMBER KTYPESTRING KIF KELSE KWHILE 
 %token <strv> OPALGORLOW OPALGORHIGH OPATTACHVAL OPLOGALGOR OPOR OPAND OPSOP OPLB OPRB OPLBB OPRBB OPSEMI OPCOMMA
 %token <strv> NUMBER STRING NAME
-%type   Program FullDefineList VariableDefine FunctionDefine VariableDefineList FunctionDefineList FunctionDescription ParamList
+%type   Program VariableDefine FunctionDefine VariableDefineList FunctionDefineList FunctionDescription ParamList
 %type   CodeBlock StatementList Statement 
 %type   NumberDescriptionList NumberDescription StringDescriptionList StringDescription AssignNumber AssignString
 %type   Expressions Arguments
@@ -30,11 +30,8 @@
 %%
 
 Program:
-    |FullDefineList
-    ;
-FullDefineList:
-    FunctionDefineList
-    |VariableDefineList FunctionDefineList
+    %empty
+    |FunctionDefineList
     ;
 FunctionDefineList:
     FunctionDefine FunctionDefineList
@@ -61,7 +58,7 @@ CodeBlock:
     ;
 StatementList:
     Statement StatementList
-    |
+    |%empty
     ;
 Statement:
     CodeBlock
@@ -71,8 +68,8 @@ Statement:
     ;
 
 VariableDefineList:
-    VariableDefine VariableDefineList
-    |VariableDefine
+    VariableDefine
+    |VariableDefine VariableDefineList
     ;
 VariableDefine:
     KTYPENUMBER NumberDescriptionList OPSEMI
