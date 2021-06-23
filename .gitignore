@@ -2,3 +2,5 @@
 a.out
 lex.yy.*
 *.tab.*
+BisonLALR.dot
+BisonLALR.output

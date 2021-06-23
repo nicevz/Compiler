@@ -5,15 +5,18 @@
 
 %option noyywrap graphs_file header_file bison flex
 /* 处理关键字 */
+
 ktypei (int)
 ktypef (float)
-ktypes (string)
-KTYPEID {ktypei}|{ktypef}|{ktypes}
+KTYPESTRING (string)
+KTYPENUMBER {ktypei}|{ktypef}
 
 KIF (if)
 KELSE (else)
 KWHILE (while)
+
 /* 处理运算符 */
+
 opplus \+
 opminus -
 opmultiply \*
@@ -41,7 +44,8 @@ OPLB \(
 OPRB \)
 OPLBB \{
 OPRBB \}
-OPCOL ;
+OPSEMI ;
+OPCOMMA ,
 /* 字符串类型 */
 STRING  \"[^\n"]+\"
 /* 空白符类型 */
@@ -58,18 +62,26 @@ num1    [-+]?{dig}+\.?([eE][-+]?{dig}+)?
 num2    [-+]?{dig}*\.{dig}+([eE][-+]?{dig}+)?
 /* 最终数 */
 NUMBER  {num1}|{num2}
+
 %%
+
 /* 忽略空白符 */
 {ws}
 
 "/*"(.|\n)*?"*/"  /* no action: ignore multiline comments */
 (?^^\h*"//".*)
 
-{KTYPEID}  {
+{KTYPENUMBER}  {
   std::string tmp=YYText();
-  printLabel(BOLD("Type identifier: "),tmp);
+  printLabel(BOLD("NUMBER identifier: "),tmp);
   yylval.strv = strdup(tmp.c_str());
-  return KTYPEID;
+  return KTYPENUMBER;
+}
+{KTYPESTRING}  {
+  std::string tmp=YYText();
+  printLabel(BOLD("String identifier: "),tmp);
+  yylval.strv = strdup(tmp.c_str());
+  return KTYPESTRING;
 }
 {KIF} {
   std::string tmp=YYText();
@@ -157,11 +169,17 @@ NUMBER  {num1}|{num2}
     yylval.strv = strdup(tmp.c_str());
   return OPRBB;
 }
-{OPCOL} {
+{OPSEMI} {
     std::string tmp=YYText();
-    printLabel(FLBL("Colon: "),tmp);
+    printLabel(FLBL("Semicolon: "),tmp);
     yylval.strv = strdup(tmp.c_str());
-  return OPCOL;
+  return OPSEMI;
+}
+{OPCOMMA} {
+    std::string tmp=YYText();
+    printLabel(FLBL("Comma: "),tmp);
+    yylval.strv = strdup(tmp.c_str());
+    return OPCOMMA;
 }
 
 
