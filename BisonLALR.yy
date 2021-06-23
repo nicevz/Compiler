@@ -25,6 +25,8 @@
 %left OPALGORHIGH
 %right OPSOP
 %left OPLB OPRB
+%nonassoc LOWER_THAN_ELSE
+%nonassoc KELSE
 %%
 
 Program:
@@ -63,7 +65,7 @@ StatementList:
     ;
 Statement:
     CodeBlock
-    |KIF OPLB Expressions OPRB Statement
+    |KIF OPLB Expressions OPRB Statement                %prec LOWER_THAN_ELSE
     |KIF OPLB Expressions OPRB Statement KELSE Statement
     |KWHILE OPLB Expressions OPRB Statement
     ;
