@@ -4,3 +4,4 @@ lex.yy.*
 *.tab.*
 BisonLALR.dot
 BisonLALR.output
+reflex.INITIAL.gv
